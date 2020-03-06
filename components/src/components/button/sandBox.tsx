@@ -5,7 +5,7 @@ const ButtonSandbox = () => (
   <Fragment>
 
     <h2><span>1. Text and onClick function:</span></h2>
-    {/* <Button onClick={() => { console.log('!!!!'); }}>Button text</Button>
+    <Button onClick={() => { console.log('!!!!'); }}>Button text</Button>
 
     <h2><span>2. Disabled button:</span></h2>
     <Button onClick={() => { console.log('!!!!'); }} disabled />
@@ -18,8 +18,8 @@ const ButtonSandbox = () => (
     <Button type="submit" />
 
     <h2><span>5. Button link</span></h2>
-    <Button href="test">Link</Button>
-    <Button href="test" disabled>Link</Button> */}
+    <Button href="/test">Link</Button>
+    <Button href="/test" disabled>Link</Button>
 
   </Fragment>
 );

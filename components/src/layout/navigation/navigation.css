@@ -5,6 +5,7 @@
 .navigation {
     background-color: #D43728;
     box-shadow: 1px 1px 10px #777;
+    min-width: 150px;
 }
 
 .nav {
