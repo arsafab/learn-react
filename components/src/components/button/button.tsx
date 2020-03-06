@@ -7,7 +7,7 @@ interface props {
     disabled?: boolean,
     active?: boolean,
     className?: string
-    onClick?: () => void,
+    onClick?: (event: React.MouseEvent) => void,
     [key: string]: any
 }
 
@@ -21,9 +21,9 @@ const Button: React.FC<props> = ({
 }) => {
 
     const onClickAction: (event: React.MouseEvent) => void | (() => void) = (event: React.MouseEvent) => {
-        return (disabled && attrs.href)
+        return (disabled)
             ? event.preventDefault()
-            : onClick;
+            : onClick(event);
     }
 
     const Tag = attrs.href ? 'a' : 'button';

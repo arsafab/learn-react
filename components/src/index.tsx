@@ -6,12 +6,14 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import ButtonSandbox from './components/button/sandBox';
+import ButtonGroupSandbox from './components/button-group/sandBox';
 
 ReactDOM.render((
     <BrowserRouter>
       <App>
         <Switch>
           <Route path="/button" component={ButtonSandbox} />
+          <Route path="/button-group" component={ButtonGroupSandbox} />
         </Switch>
       </App>
     </BrowserRouter>
