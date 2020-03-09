@@ -13,6 +13,7 @@ import ChipSandbox from './components/chip/sandBox';
 import BadgeSandbox from './components/badge/sandbox';
 import ListGroupSandbox from './components/list-group/sandbox';
 import InputSandbox from './components/input/sandbox';
+import TabbarSandbox from './components/tabbar/sandbox';
 
 ReactDOM.render((
     <BrowserRouter>
@@ -26,6 +27,7 @@ ReactDOM.render((
           <Route path="/badge" component={BadgeSandbox} />
           <Route path="/list-group" component={ListGroupSandbox} />
           <Route path="/input" component={InputSandbox} />
+          <Route path="/tabbar" component={TabbarSandbox} />
         </Switch>
       </App>
     </BrowserRouter>
