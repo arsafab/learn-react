@@ -1,2 +1,2 @@
 # learn-react
-Apps while learning React, Redux, MobX
+Apps and components created while learning React, Redux, MobX
