@@ -6,7 +6,8 @@ interface props {
     children?: React.ReactNode,
     disabled?: boolean,
     active?: boolean,
-    className?: string
+    className?: string,
+    invert?: boolean,
     onClick?: (event: React.MouseEvent) => void,
     [key: string]: any
 }
@@ -16,6 +17,7 @@ const Button: React.FC<props> = ({
     children = 'Default button',
     disabled = false,
     active = false,
+    invert = false,
     onClick = () => {},
     ...attrs
 }) => {
@@ -30,7 +32,8 @@ const Button: React.FC<props> = ({
     const classes: string = classNames(
         'btn',
         className,
-        { active }
+        { active },
+        { invert }
     );
 
     return (
