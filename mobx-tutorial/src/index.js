@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { observable, computed, configure, action, decorate } from 'mobx';
 import { observer } from 'mobx-react';
-import DevTools from 'mobx-react-devtools';
 configure({ enforceActions: 'observed' });
 
 class Store {
