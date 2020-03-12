@@ -12,6 +12,22 @@
   margin-left: 0;
 }
 
+.filterWrapper {
+  min-height: 45px;
+  padding: 0 15px;
+  background-color: #555555;
+}
+
+.filterWrapper > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filterWrapper > div > p {
+  margin: 0;
+}
+
 .btnGroup {
   display: flex;
   justify-content: space-between;
