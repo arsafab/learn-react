@@ -5,6 +5,8 @@ import { createBrowserHistory } from 'history';
 import { createStores } from 'app/stores';
 import { App } from 'app';
 
+import './styles/index.css';
+
 // default fixtures for TodoStore
 const defaultStore = [];
 
