@@ -6,7 +6,8 @@ import {
   ButtonGroup,
   ListGroup,
   ListGroupItem,
-  MovieItem
+  MovieItem,
+  Footer
 } from 'app/components';
 import * as styles from './style.css';
 import { MoviesService } from 'app/api';
@@ -94,6 +95,8 @@ export class Home extends Component<IProps, IState> {
             ))
           }
         </ListGroup>
+
+        <Footer />
       </>
     );
   }
