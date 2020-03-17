@@ -1,8 +1,0 @@
-.tab-bar-item {
-    height: 0;
-    overflow: hidden;
-}
-
-.tab-bar-item.active {
-    height: auto;
-}
