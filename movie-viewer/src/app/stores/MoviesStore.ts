@@ -1,16 +1,48 @@
-import { observable, action } from "mobx";
+import { observable, action, computed } from "mobx";
 import { IMovie } from "app/models";
 
 export class MoviesStore {
   constructor(fixtures: IMovie[]) {
-    this.movies = fixtures;
+    this.initialData = fixtures;
   }
 
-  @observable public movies: Array<IMovie>;
+  @observable public movies: IMovie[] = [];
+  @observable public currentPage: number;
+  @observable public currentSorting: string;
+
+  private initialData: IMovie[];
+
+  @computed
+  get activeMovies() {
+    const offset = this.currentPage * 9;
+    return this.movies.slice(offset, offset + 9);
+  }
+
+  @computed
+  get totalPageNumber() {
+    return Math.ceil(this.movies.length / 9);
+  }
 
   @action
-  addMovies = (items: IMovie[]): void => {
-    this.movies = [ ...items ];
+  saveMovies = (items: IMovie[]): void => {
+    this.initialData = [ ...items ];
+    this.movies = [ ...this.initialData ];
+  };
+
+  @action
+  changeCurrentPage = (page: number): void => {
+    this.currentPage = page;
+  };
+
+  @action
+  filterBy = (field: string): void => {
+    this.currentSorting = field;
+    this.movies = this.movies
+      .slice(0)
+      .sort((a, b) => {
+        return a[field] < b[field]
+          ? 1
+          : a[field] > b[field] ? -1 : 0;
+      });
   };
 }
-

@@ -17,9 +17,7 @@ export const MovieItem: React.FC<props> = ({
 }) => {
   return (
     <figure className={styles.item}>
-      <a className={styles.image}>
-        <img src={src} />
-      </a>
+      <img src={src} className={styles.image} />
       <figcaption className={styles.description}>
         <span className={styles.title}>{ title }</span>
         <span className={styles.releaseDate}>{releaseDate.slice(0, 4)}</span>

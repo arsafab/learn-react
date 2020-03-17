@@ -12,13 +12,6 @@
 
 .image {
   display: block;
-  cursor: pointer;
-}
-
-.image:hover {
-  opacity: 0.9;
-  box-shadow: 0 -8px 5px 5px rgba(0, 0, 0, 0.75);
-  transition: all 0.4s;;
 }
 
 .description {

@@ -1,14 +1,12 @@
 import React from 'react';
 import * as styles from './style.css';
 
-interface IProps {
-  children?: JSX.Element[] | JSX.Element | string;
-}
+interface IProps {}
 
-export const Footer: React.FC<IProps> = ({ children = null }) => {
+export const Footer: React.FC<IProps> = () => {
   return (
-    <footer className={styles.footer}>
-      <div>
+    <footer>
+      <div className={styles.footer}>
         <span className={styles.logo}>netflix<span>roulette</span></span>
       </div>
     </footer>

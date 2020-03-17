@@ -16,35 +16,32 @@ import { IMovieResponse, IMovie } from 'app/models';
 import { inject, observer } from 'mobx-react';
 import { STORE_ROUTER, STORE_MOVIES } from 'app/constants';
 import { MoviesStore, RouterStore } from 'app/stores';
+import { Pagination } from 'app/components/Pagination';
 
 interface IProps {
   [STORE_MOVIES]: MoviesStore;
   [STORE_ROUTER]: RouterStore;
 }
-interface IState {
-  moviesList: IMovie[]
-}
+
+interface IState {}
 
 @inject(STORE_MOVIES, STORE_ROUTER)
 @observer
 export class Home extends Component<IProps, IState> {
-  public readonly state = {
-    moviesList: []
-  }
-
-
   public componentDidMount(): void {
-    const { movies } = this.props;
+    const store = this.props[STORE_MOVIES];
 
     MoviesService.getAll()
       .then((data: IMovieResponse) => {
-        movies.addMovies(data.data);
-        this.setState({ moviesList: data.data })
+        store.saveMovies(data.data);
+        store.filterBy('vote_average')
+        store.changeCurrentPage(0);
       })
   }
 
   public render(): JSX.Element {
-    const { moviesList } = this.state;
+    const store = this.props[STORE_MOVIES];
+    const { activeMovies, movies, currentSorting } = this.props[STORE_MOVIES];
 
     return (
       <>
@@ -56,24 +53,37 @@ export class Home extends Component<IProps, IState> {
           <div className={styles.btnGroup}>
             <p>Search by:</p>
             <ButtonGroup>
-              <Button active className={styles.btn}>
+              <Button
+                active
+                className={styles.btn}
+              >
                 Title
               </Button>
-              <Button className={styles.btn}>Genre</Button>
+              <Button
+                className={styles.btn}
+              >Genre</Button>
             </ButtonGroup>
           </div>
         </Header>
 
         <div className={styles.filterWrapper}>
           <div className="container">
-            <p>7 movies found</p>
+            <p>{movies.length} movies found</p>
             <div className={styles.btnGroup}>
               <p>Sort by:</p>
               <ButtonGroup>
-                <Button active className={styles.btn}>
+                <Button
+                  className={styles.btn}
+                  active={currentSorting === 'release_date'}
+                  onClick={() => store.filterBy('release_date')}
+                >
                   Release date
                 </Button>
-                <Button className={styles.btn}>Rating</Button>
+                <Button
+                  className={styles.btn}
+                  active={currentSorting === 'vote_average'}
+                  onClick={() => store.filterBy('vote_average')}
+                >Rating</Button>
               </ButtonGroup>
             </div>
           </div>
@@ -81,7 +91,7 @@ export class Home extends Component<IProps, IState> {
 
         <ListGroup>
           {
-            moviesList.map((item: IMovie) => (
+            activeMovies.map((item: IMovie) => (
               <ListGroupItem
                 key={item.id}
               >
@@ -95,6 +105,8 @@ export class Home extends Component<IProps, IState> {
             ))
           }
         </ListGroup>
+
+        <Pagination />
 
         <Footer />
       </>
