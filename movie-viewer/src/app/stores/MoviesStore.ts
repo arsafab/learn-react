@@ -9,6 +9,7 @@ export class MoviesStore {
   @observable public movies: IMovie[] = [];
   @observable public currentPage: number;
   @observable public currentSorting: string;
+  @observable public currentSearch: string = 'title';
 
   private initialData: IMovie[];
 
@@ -37,12 +38,25 @@ export class MoviesStore {
   @action
   filterBy = (field: string): void => {
     this.currentSorting = field;
-    this.movies = this.movies
+    this.movies = this.initialData
       .slice(0)
       .sort((a, b) => {
         return a[field] < b[field]
           ? 1
           : a[field] > b[field] ? -1 : 0;
       });
+  };
+
+  @action
+  searchBy = (query: string): void => {
+    const reg = new RegExp(query, 'gim');
+
+    this.movies = this.initialData
+      .filter(item => reg.test(item[this.currentSearch]));
+  };
+
+  @action
+  setCurrentSearch = (field: string): void => {
+    this.currentSearch = field;
   };
 }

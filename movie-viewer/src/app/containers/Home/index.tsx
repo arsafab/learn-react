@@ -23,11 +23,17 @@ interface IProps {
   [STORE_ROUTER]: RouterStore;
 }
 
-interface IState {}
+interface IState {
+  inputValue: string
+}
 
 @inject(STORE_MOVIES, STORE_ROUTER)
 @observer
 export class Home extends Component<IProps, IState> {
+  state = {
+    inputValue: ''
+  }
+
   public componentDidMount(): void {
     const store = this.props[STORE_MOVIES];
 
@@ -39,29 +45,48 @@ export class Home extends Component<IProps, IState> {
       })
   }
 
+  private searchBy = () => {
+    const { searchBy } = this.props[STORE_MOVIES];
+    const { inputValue } = this.state;
+    searchBy(inputValue)
+  }
+
+  private onInputChange = ({target: { value }}) => {
+    this.setState({ inputValue: value })
+  }
+
   public render(): JSX.Element {
-    const store = this.props[STORE_MOVIES];
-    const { activeMovies, movies, currentSorting } = this.props[STORE_MOVIES];
+    const {
+      activeMovies,
+      movies,
+      currentSorting,
+      currentSearch,
+      filterBy,
+      setCurrentSearch
+    } = this.props[STORE_MOVIES];
 
     return (
       <>
         <Header>
           <div className={styles.inputWrapper}>
-            <Input id="text" type="text" />
-            <Button>Search</Button>
+            <Input id="text" type="text" onChange={(e) => this.onInputChange(e)} />
+            <Button onClick={this.searchBy}>Search</Button>
           </div>
           <div className={styles.btnGroup}>
             <p>Search by:</p>
             <ButtonGroup>
               <Button
-                active
+                active={currentSearch === 'title'}
                 className={styles.btn}
+                onClick={() => setCurrentSearch('title')}
               >
                 Title
               </Button>
               <Button
+                active={currentSearch === 'overview'}
                 className={styles.btn}
-              >Genre</Button>
+                onClick={() => setCurrentSearch('overview')}
+              >Overview</Button>
             </ButtonGroup>
           </div>
         </Header>
@@ -75,14 +100,14 @@ export class Home extends Component<IProps, IState> {
                 <Button
                   className={styles.btn}
                   active={currentSorting === 'release_date'}
-                  onClick={() => store.filterBy('release_date')}
+                  onClick={() => filterBy('release_date')}
                 >
                   Release date
                 </Button>
                 <Button
                   className={styles.btn}
                   active={currentSorting === 'vote_average'}
-                  onClick={() => store.filterBy('vote_average')}
+                  onClick={() => filterBy('vote_average')}
                 >Rating</Button>
               </ButtonGroup>
             </div>
