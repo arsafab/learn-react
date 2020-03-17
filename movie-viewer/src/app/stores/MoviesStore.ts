@@ -38,7 +38,7 @@ export class MoviesStore {
   @action
   filterBy = (field: string): void => {
     this.currentSorting = field;
-    this.movies = this.initialData
+    this.movies = this.movies
       .slice(0)
       .sort((a, b) => {
         return a[field] < b[field]

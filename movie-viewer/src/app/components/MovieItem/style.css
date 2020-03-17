@@ -15,6 +15,7 @@
 }
 
 .description {
+  position: relative;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -44,4 +45,17 @@
 .genre {
   font-size: 12px;
   color: #c0c0c0;
+}
+
+.rating {
+  position: absolute;
+  top: -60px;
+  left: 10px;
+  min-width: 36px;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #c0c0c0;
+  border-radius: 50%;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.5);
 }

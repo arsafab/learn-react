@@ -3,6 +3,7 @@ import React from 'react';
 import * as styles from './style.css';
 
 interface props {
+  rating: number;
   src: string;
   title: string;
   releaseDate: string;
@@ -10,6 +11,7 @@ interface props {
 };
 
 export const MovieItem: React.FC<props> = ({
+  rating,
   src,
   title,
   releaseDate,
@@ -19,7 +21,8 @@ export const MovieItem: React.FC<props> = ({
     <figure className={styles.item}>
       <img src={src} className={styles.image} />
       <figcaption className={styles.description}>
-        <span className={styles.title}>{ title }</span>
+        <span className={styles.rating}>{rating}</span>
+        <span className={styles.title}>{title}</span>
         <span className={styles.releaseDate}>{releaseDate.slice(0, 4)}</span>
         {
           genres.length &&

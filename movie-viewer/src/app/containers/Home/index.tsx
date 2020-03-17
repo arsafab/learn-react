@@ -125,6 +125,7 @@ export class Home extends Component<IProps, IState> {
                   title={item.title}
                   releaseDate={item.release_date}
                   genres={item.genres}
+                  rating={item.vote_average}
                 />
               </ListGroupItem>
             ))
