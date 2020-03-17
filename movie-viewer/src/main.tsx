@@ -7,14 +7,10 @@ import { App } from 'app';
 
 import './styles/index.css';
 
-// default fixtures for TodoStore
 const defaultStore = [];
-
-// prepare MobX stores
 const history = createBrowserHistory();
 const rootStore = createStores(history, defaultStore);
 
-// render react DOM
 ReactDOM.render(
   <Provider {...rootStore}>
     <App history={history} />

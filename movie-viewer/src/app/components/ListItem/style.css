@@ -1,0 +1,9 @@
+.listGroupItem {
+  list-style-type: none;
+}
+
+.listGroupItem.active {
+  background-color: #23C9FF;
+  border: 1px solid #5EB2F2;
+  color: #FFF;
+}

@@ -13,7 +13,7 @@ interface props {
 const ListGroupItem: React.FC<props> = ({
     children = null,
     className = '',
-    Tag = 'ul',
+    Tag = 'li',
     active = false,
     disabled = false,
     ...attrs

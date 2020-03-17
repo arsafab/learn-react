@@ -1,3 +1,2 @@
-import TodoModel from './TodoModel';
-
-export { TodoModel };
+export * from './movie';
+export * from './movie-response';
